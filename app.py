@@ -2,10 +2,11 @@ import os
 import time
 from flask import Flask, render_template
 
+from typer import Typer
 from rich import print as rprint
 print = rprint
 
-
+cli_app = Typer()
 app = Flask("PhotoBooth")
 image_directory = 'static/images/'  # Replace with the actual directory path
 
@@ -43,7 +44,11 @@ def image():
     return get_newest_image()
 
 
+@cli_app.command()
+def create_website(host: str = '0.0.0.0', port: int =500 ):
+    app.run(host=host, port=port)
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    cli_app()
 
 
