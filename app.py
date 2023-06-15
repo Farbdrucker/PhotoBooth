@@ -7,7 +7,7 @@ print = rprint
 
 
 app = Flask("PhotoBooth")
-image_directory = '/static/images'  # Replace with the actual directory path
+image_directory = 'static/images/'  # Replace with the actual directory path
 
 
 def get_newest_image():
