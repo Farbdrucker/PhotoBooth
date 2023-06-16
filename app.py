@@ -1,9 +1,10 @@
 import os
-import time
+
 from flask import Flask, render_template
 
 from typer import Typer
 from rich import print as rprint
+
 print = rprint
 
 cli_app = Typer()
@@ -25,7 +26,6 @@ def get_newest_image():
 
     if image_files:
         newest_image = image_files[-1]
-        latest_time = os.path.getmtime(os.path.join(image_directory, newest_image))
         
         print(f"newest image: {newest_image}")
         return {"image": newest_image, "counts": len(image_files)}
@@ -45,7 +45,7 @@ def image():
 
 
 @cli_app.command()
-def create_website(host: str = '0.0.0.0', port: int =500 ):
+def create_website(host: str = '0.0.0.0', port: int =5000 ):
     app.run(host=host, port=port)
 
 if __name__ == '__main__':
